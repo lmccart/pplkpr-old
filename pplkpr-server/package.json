@@ -1,0 +1,21 @@
+{
+  "name": "pplkpr",
+  "scripts": {
+    "start": "index.js"
+  },
+  "version": "0.0.0-105",
+  "engines": {
+    "node": "0.8.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lmccart/pplkpr.git"
+  },
+  "dependencies": {
+    "mongodb": "1.2.13",
+    "urban-airship": "0.2.4",
+    "date-utils": "1.2.12",
+    "express": "3.x"
+  },
+  "subdomain": "pplkpr"
+}
