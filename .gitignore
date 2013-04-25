@@ -157,3 +157,9 @@ xcuserdata
 #
 pplkpr-server/config*
 pplkpr-server/node_modules/*
+
+####
+# Others
+#
+auth/*
+samples/*
