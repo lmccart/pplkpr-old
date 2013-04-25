@@ -15,7 +15,8 @@
   IBOutlet UISlider *ratingSlider;
   IBOutlet UIButton *submitButton;
 	IBOutlet UILabel *label;
-	NSString *string;
+	NSString *whoString;
+  NSString *howString;
 }
 
 @property (nonatomic, retain) UITextField *whoTextField;
@@ -23,8 +24,10 @@
 @property (nonatomic, retain) UISlider *ratingSlider;
 @property (nonatomic, retain) UIButton *submitButton;
 @property (nonatomic, retain) UILabel *label;
-@property (nonatomic, copy) NSString *string;
+@property (nonatomic, copy) NSString *whoString;
+@property (nonatomic, copy) NSString *howString;
 
 - (IBAction)sendReport:(id)sender;
+- (void)reset;
 
 @end

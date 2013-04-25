@@ -78,6 +78,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
   // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+  [locationManager stopMonitoringSignificantLocationChanges];
 }
 
 
@@ -102,7 +103,17 @@
     NSLog(@"latitude %+.6f, longitude %+.6f\n",
           location.coordinate.latitude,
           location.coordinate.longitude);
+  
+    
+    UILocalNotification * theNotification = [[UILocalNotification alloc] init];
+    theNotification.alertBody = [NSString stringWithFormat:@"Background location %.06f %.06f %@" , location.coordinate.latitude, location.coordinate.longitude, location.timestamp];
+    theNotification.alertAction = @"Ok";
+    
+    theNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:1];
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:theNotification];
   //}
+  
 }
 
 
@@ -116,6 +127,10 @@
 - (void)stopUpdatingLocation:(NSString *)state {
   [locationManager stopMonitoringSignificantLocationChanges];
   locationManager.delegate = nil;
+}
+
+- (void)didReceiveLocalNotification:(UILocalNotification *)notification {
+  NSLog(@"did you move?");
 }
 
 
