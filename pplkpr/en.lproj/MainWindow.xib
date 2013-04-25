@@ -127,15 +127,15 @@
 						<reference key="parent" ref="957960031"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">8</int>
-						<reference key="object" ref="627919984"/>
-						<reference key="parent" ref="380026005"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">4</int>
 						<reference key="object" ref="987256611"/>
 						<reference key="parent" ref="957960031"/>
 						<string key="objectName">PKAppDelegate</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">8</int>
+						<reference key="object" ref="627919984"/>
+						<reference key="parent" ref="380026005"/>
 					</object>
 				</object>
 			</object>

@@ -30,12 +30,14 @@ app.configure('production', function(){
 */
 
 app.get('/report', function(req, res){
+	var who = req.query.who;
+	var how = req.query.how;
 	var rating = req.query.rating;
+	report(who, how, rating, res);
+});
 
-  var body = 'Hello World '+rating;
-  res.setHeader('Content-Type', 'text/plain');
-  res.setHeader('Content-Length', body.length);
-  res.end(body);
+app.get('/all', function(req, res){
+	showAll(res);
 });
 
 app.listen(3000);
@@ -53,36 +55,36 @@ common.mongo.open(function(err, p_client) {
 });
 	
 
-function report(req, res) {
-	
-	var p2pString = p2p ? 'enabled' : 'disabled';
-	var tok = "";
-	
-	var versionExpired = (version < common.currVersion);
-				
-	// if force flag, reset session automatically
-	// note: forcing streaming to false
-	if (force) { // force create new session
-		newSession(p2pString, function(sessionid) { 
-			var tok = newToken(sessionid, false); 
-			updateUser(deviceid, versionExpired, sessionid, tok, false, 0, false, res);
+function report(who, how, rating, res) {
+	console.log("report "+rating);
+	// check if in db already
+	common.mongo.collection('reports', function(e, c) {	
+		c.insert({ who: who, how: how, rating: rating }, function(err, doc) {
+  		var body = 'Hello World '+rating;
+	    print({ success: body }, res);
 		});
-	} else {
-
-		// check if in db already
-		common.mongo.collection('users', function(e, c) {	
-			c.findOne({'deviceid':deviceid}, function(err, doc) {
-				if (doc) { 
-						var tok = newToken(doc.sessionid, false);
-						var points = doc.points ? doc.points : 0;
-						updateUser(deviceid, versionExpired, doc.sessionid, tok, false, points, doc.isGod, res);
-				} else {  // create new id
-					newSession(p2pString, function(sessionid) {
-						var tok = newToken(sessionid, false);
-						updateUser(deviceid, versionExpired, sessionid, tok, false, 0, false, res);
-					});
-				}
-			});
-		});
-	}							
+	});	
 }
+
+function showAll(res) {
+	common.mongo.collection('reports', function(e, c) {	
+		c.find().toArray(function(err, results) {
+	    print({ success: results }, res);
+		});
+	});						
+}
+
+
+function print(data, res) {
+  res.writeHead(200, { 'Content-Type': 'application/json' });   
+  res.write(JSON.stringify(data));
+  res.end();
+}
+
+
+
+
+
+
+
+

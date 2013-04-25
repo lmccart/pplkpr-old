@@ -10,15 +10,21 @@
 
 @interface PKViewController : UIViewController <UITextFieldDelegate> {
 	
-	IBOutlet UITextField *textField;
+	IBOutlet UITextField *whoTextField;
+	IBOutlet UITextField *howTextField;
+  IBOutlet UISlider *ratingSlider;
+  IBOutlet UIButton *submitButton;
 	IBOutlet UILabel *label;
 	NSString *string;
 }
 
-@property (nonatomic, retain) UITextField *textField;
+@property (nonatomic, retain) UITextField *whoTextField;
+@property (nonatomic, retain) UITextField *howTextField;
+@property (nonatomic, retain) UISlider *ratingSlider;
+@property (nonatomic, retain) UIButton *submitButton;
 @property (nonatomic, retain) UILabel *label;
 @property (nonatomic, copy) NSString *string;
 
-- (void)updateString;
+- (IBAction)sendReport:(id)sender;
 
 @end

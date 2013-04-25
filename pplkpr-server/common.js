@@ -28,110 +28,13 @@
 
 
 // Require the configuration file
-var config = require(__dirname + "/config_prod.json");
-//var config = require(__dirname + "/config.json");
+//var config = require(__dirname + "/config_prod.json");
+var config = (process.env.NODE_ENV == 'production') ? require(__dirname + "/config_prod.json") : require(__dirname + "/config.json");
 
 // Config mongo
 var Db = require('mongodb').Db;
 var MongoServer = require('mongodb').Server;
 var mongo = new Db(config.mongo.db, new MongoServer(config.mongo.host, config.mongo.port, {strict:true, auto_reconnect:true}), {w: 1});
-
-// Date helpers
-require('date-utils');
-
-/*// Socket stuff
-var io = require('socket.io').listen(80);
-var socket;
-
-io.sockets.on('connection', function (socket) {
-  console.log("opened socket");
-  socket = socket;
-});
-
-var sendToSocket = function(msg) {
-	if (socket) {
-		 socket.emit('msg', msg);
-	}
-};*/
-
-// Push notifications
-var UA = require('urban-airship');
-ua = new UA(config.ua.appkey, config.ua.appsecret, config.ua.appmastersecret);
-
-//app key: jEzYHFRERgKkyWE9R_nhyw
-//app secret: A2jpyiKeS6aEbmRIoLzhKw
-
-// send to user
-var sendPush = function(airshiptoken, msg, additional, res) {
-
-	var payload0 = {
-    "device_tokens": [ airshiptoken ],
-    "aps": {
-        "alert": msg,
-        "badge": 0,
-        "sound": "default"
-    }
-  };
-  
-  //payload0 = payload0.concat(additional);
-  if (additional) {
-  	for (var i=0; i<additional.length; i++)
-	  	payload0[additional[i][0]] = additional[i][1];
-  }
-  console.log(payload0);
-
-  ua.pushNotification("/api/push", payload0, function(error) {
-	  if (error) console.log("ua error sending payload "+error);
-	  
-	  else {
-	    // return json with tok + sessionid
-	    res.writeHead(200, { 'Content-Type': 'application/json' });   
-	    res.write(JSON.stringify({ airshiptoken:airshiptoken, success:true }));
-	    res.end();
-	  }
-  });
-
-};
-
-// send to all but god
-var broadcastPush = function(msg, additional, res) {
-	mongo.collection('users', function(e, c) {	
-		c.findOne({'isGod':true}, function(err, doc) {
-			if (doc) { 
-				var payload1 = {
-			    "aps": {
-			         "alert": msg,
-			         "badge": 0,
-			         "sound": "default"
-			    },
-			    "exclude_tokens": [ doc.airshiptoken ]
-			  };
-			  if (additional) {
-			  	for (var i=0; i<additional.length; i++)
-				  	payload1[additional[i][0]] = additional[i][1];
-			  }
-			  console.log(payload1);
-			
-				ua.pushNotification("/api/push/broadcast/", payload1, function(error) {
-					if (error) console.log('failed to broadcast '+error);
-					
-			    // return json with tok + sessionid
-			    res.writeHead(200, { 'Content-Type': 'application/json' });   
-			    res.write(JSON.stringify({ success: true }));
-			    res.end();
-								
-				});
-			} else {
-				console.log('failed to find god');
-				
-		    // return json with tok + sessionid
-		    res.writeHead(200, { 'Content-Type': 'application/json' });   
-		    res.write(JSON.stringify({ success: false }));
-		    res.end();
-			}
-		});
-	});
-};
 
 // Exports
 module.exports = {
@@ -140,12 +43,7 @@ module.exports = {
 	qs: require('querystring'),
 	fs : require('fs'),
 	config : config,
-	mongo : mongo,
-	sendPush : sendPush,
-	broadcastPush : broadcastPush,
-	ua : ua,
-	currVersion : 0, // update software version here
-	pointSpeeds : [100, 1000] // rate god points increase normally and when god is watching
+	mongo : mongo
  	
 };
 

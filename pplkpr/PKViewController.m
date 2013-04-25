@@ -11,16 +11,20 @@
 
 @implementation PKViewController
 
-@synthesize textField;
+@synthesize whoTextField;
+@synthesize howTextField;
+@synthesize ratingSlider;
+@synthesize submitButton;
 @synthesize label;
 @synthesize string;
 
 - (void)viewDidLoad {
   // When the user starts typing, show the clear button in the text field.
-  textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+  whoTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+  howTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
   // When the view first loads, display the placeholder text that's in the
   // text field in the label.
-  label.text = textField.placeholder;
+  label.text = whoTextField.placeholder;
   [super viewDidLoad];
 }
 
@@ -33,38 +37,60 @@
 }
 
 - (void)dealloc {
-	[textField release];
+	[whoTextField release];
+	[howTextField release];
+  [ratingSlider release];
+  [submitButton release];
 	[label release];
   [super dealloc];
 }
 
 
-- (void)updateString {
+- (IBAction)sendReport:(id)sender {
 	
 	// Store the text of the text field in the 'string' instance variable.
-	self.string = textField.text;
+	self.string = whoTextField.text;
   // Set the text of the label to the value of the 'string' instance variable.
 	label.text = self.string;
+
+  
+  NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://pplkpr.nodejitsu.com/report?who=%@&how=%@&rating=%f", whoTextField.text, howTextField.text, ratingSlider.value]];
+  NSURLRequest *theRequest=[NSURLRequest requestWithURL:URL
+                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                        timeoutInterval:60.0];
+  
+ 
+  // create the connection with the request
+  // and start loading the data
+  NSURLConnection *theConnection=[[NSURLConnection alloc] initWithRequest:theRequest delegate:self];
+  if (theConnection) {
+    // Create the NSMutableData to hold the received data.
+    // receivedData is an instance variable declared elsewhere.
+    //label.text = [[NSString alloc] initWithData:[[NSMutableData data] retain] encoding:NSUTF8StringEncoding];
+    label.text = @"success";
+  } else {
+    // Inform the user that the connection failed.
+    label.text = @"fail";
+  }
+  
 }
 
-
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
-	// When the user presses return, take focus away from the text field so that the keyboard is dismissed.
-	if (theTextField == textField) {
-		[textField resignFirstResponder];
-    // Invoke the method that changes the greeting.
-    [self updateString];
-	}
+	if (theTextField == whoTextField) {
+		[whoTextField resignFirstResponder];
+	} else if (theTextField == howTextField) {
+    [howTextField resignFirstResponder];
+  }
 	return YES;
 }
 
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-  // Dismiss the keyboard when the view outside the text field is touched.
-  [textField resignFirstResponder];
-  // Revert the text field to the previous value.
-  textField.text = self.string;
+  [whoTextField resignFirstResponder];
+  whoTextField.text = self.string;
+  [howTextField resignFirstResponder];
+  howTextField.text = self.string;
   [super touchesBegan:touches withEvent:event];
 }
 
