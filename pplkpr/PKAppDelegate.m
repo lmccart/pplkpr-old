@@ -13,23 +13,38 @@
 
 
 @synthesize window;
+@synthesize navigationController;
 @synthesize pkViewController;
+@synthesize fpViewController;
 @synthesize locationManager;
+
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+  return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
+}
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   
-  // Set up the view controller
-	PKViewController *aViewController = [[PKViewController alloc] initWithNibName:@"HelloWorld" bundle:[NSBundle mainBundle]];
-	self.pkViewController = aViewController;
-	[aViewController release];
   
-  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque];
-	
-	// Add the view controller's view as a subview of the window
-	UIView *controllersView = [pkViewController view];
-	[window addSubview:controllersView];
-	[window makeKeyAndVisible];
+  
+  // Override point for customization after application launch.
+  self.fpViewController = [[FPViewController alloc] initWithNibName:@"FPViewController" bundle:nil];
+  self.fpViewController.navigationItem.title = @"Friend Picker";
+  
+  // Set up a UINavigationController as the basis of this app, with the nib generated viewController
+  // as the initial view.
+  self.navigationController = [[UINavigationController alloc] initWithRootViewController:self.fpViewController];
+  
+  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+  [self.window setRootViewController:self.navigationController];
+  [self.window makeKeyAndVisible];
+  
+  
   
   if ([CLLocationManager locationServicesEnabled]) {
     
@@ -73,17 +88,22 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
   // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+  
+  [FBAppCall handleDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
   // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   [locationManager stopMonitoringSignificantLocationChanges];
+  [FBSession.activeSession close];
 }
 
 
 - (void)dealloc {
 	[pkViewController release];
+	[fpViewController release];
+  [navigationController release];
 	[window release];
   [locationManager release];
   [super dealloc];
