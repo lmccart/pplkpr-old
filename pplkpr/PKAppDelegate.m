@@ -13,9 +13,9 @@
 
 
 @synthesize window;
-@synthesize navigationController;
-@synthesize pkViewController;
-@synthesize fpViewController;
+@synthesize tabBarController;
+@synthesize homeViewController;
+@synthesize reportViewController;
 @synthesize locationManager;
 
 
@@ -30,21 +30,14 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   
+  self.homeViewController = [[PKHomeViewController alloc] initWithNibName:@"PKHomeView" bundle:nil];
+  self.reportViewController = [[PKReportViewController alloc] initWithNibName:@"PKReportView" bundle:nil];
   
-  
-  // Override point for customization after application launch.
-  self.fpViewController = [[FPViewController alloc] initWithNibName:@"FPViewController" bundle:nil];
-  self.fpViewController.navigationItem.title = @"Friend Picker";
-  
-  // Set up a UINavigationController as the basis of this app, with the nib generated viewController
-  // as the initial view.
-  self.navigationController = [[UINavigationController alloc] initWithRootViewController:self.fpViewController];
-  
-  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-  [self.window setRootViewController:self.navigationController];
+  self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+  self.tabBarController = [[[UITabBarController alloc] init] autorelease];
+  self.tabBarController.viewControllers = @[self.homeViewController, self.reportViewController];
+  [self.window setRootViewController:self.tabBarController];
   [self.window makeKeyAndVisible];
-  
-  
   
   if ([CLLocationManager locationServicesEnabled]) {
     
@@ -101,9 +94,9 @@
 
 
 - (void)dealloc {
-	[pkViewController release];
-	[fpViewController release];
-  [navigationController release];
+  [homeViewController release];
+	[reportViewController release];
+  [tabBarController release];
 	[window release];
   [locationManager release];
   [super dealloc];
@@ -126,9 +119,10 @@
   
     
     UILocalNotification * theNotification = [[UILocalNotification alloc] init];
-    theNotification.alertBody = [NSString stringWithFormat:@"Background location %.06f %.06f %@" , location.coordinate.latitude, location.coordinate.longitude, location.timestamp];
-    theNotification.alertAction = @"Ok";
-    
+    theNotification.alertBody = @"Are you about to meet someone or did you leave someone?";
+    theNotification.alertAction = @"Yes";
+    theNotification.hasAction = YES;
+  
     theNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:1];
     
     [[UIApplication sharedApplication] scheduleLocalNotification:theNotification];
@@ -151,6 +145,9 @@
 
 - (void)didReceiveLocalNotification:(UILocalNotification *)notification {
   NSLog(@"did you move?");
+  
+  [tabBarController setSelectedIndex:0];
+  [reportViewController reset];
 }
 
 

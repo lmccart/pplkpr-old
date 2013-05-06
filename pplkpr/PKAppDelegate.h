@@ -10,25 +10,24 @@
 #import <CoreLocation/CoreLocation.h>
 #import <FacebookSDK/FacebookSDK.h>
 
-#import "PKViewController.h"
-#import "FPViewController.h"
+#import "PKHomeViewController.h"
+#import "PKReportViewController.h"
 
+@class PKHomeViewController;
+@class PKReportViewController;
 
-@class PKViewController;
-@class FPViewController;
-
-@interface PKAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate> {
+@interface PKAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate, UITabBarControllerDelegate> {
   IBOutlet UIWindow *window;
-  UINavigationController *navigationController;
-  PKViewController *pkViewController;
-  FPViewController *fpViewController;
+  PKHomeViewController *homeViewController;
+  PKReportViewController *reportViewController;
+  UITabBarController *tabBarController;
   CLLocationManager *locationManager;
 }
 
 @property (nonatomic, retain) UIWindow *window;
-@property (nonatomic, retain) UINavigationController *navigationController;
-@property (nonatomic, retain) PKViewController *pkViewController;
-@property (nonatomic, retain) FPViewController *fpViewController;
+@property (nonatomic, retain) PKHomeViewController *homeViewController;
+@property (nonatomic, retain) PKReportViewController *reportViewController;
+@property (strong, nonatomic) UITabBarController *tabBarController;
 @property (nonatomic, retain) CLLocationManager *locationManager;
 
 - (void)stopUpdatingLocation:(NSString *)state;

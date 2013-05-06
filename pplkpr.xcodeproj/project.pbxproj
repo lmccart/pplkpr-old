@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		653B93A1173815C0001B4E71 /* PKReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 653B939F173815C0001B4E71 /* PKReportView.xib */; };
+		653B93A31738161E001B4E71 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653B93A21738161E001B4E71 /* AdSupport.framework */; };
+		653B93A517381622001B4E71 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653B93A417381622001B4E71 /* Social.framework */; };
+		653B93A71738162F001B4E71 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 653B93A61738162F001B4E71 /* libsqlite3.dylib */; };
+		653B93A917381637001B4E71 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653B93A817381637001B4E71 /* Security.framework */; };
+		653B93AC17381668001B4E71 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 653B93AA17381668001B4E71 /* FacebookSDKResources.bundle */; };
+		653B93AD17381668001B4E71 /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 653B93AB17381668001B4E71 /* FBUserSettingsViewResources.bundle */; };
+		653B93AF173816B7001B4E71 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653B93AE173816B7001B4E71 /* FacebookSDK.framework */; };
+		653B93B1173816F7001B4E71 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653B93B0173816F7001B4E71 /* Accounts.framework */; };
+		653B93B417381734001B4E71 /* PKReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653B93B317381734001B4E71 /* PKReportViewController.m */; };
+		653B93B5173817ED001B4E71 /* PKReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653B93B317381734001B4E71 /* PKReportViewController.m */; };
+		653B93F4173836A3001B4E71 /* PKHomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 653B93F3173836A3001B4E71 /* PKHomeView.xib */; };
+		653B93F7173836AA001B4E71 /* PKHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653B93F6173836AA001B4E71 /* PKHomeViewController.m */; };
+		653B93F8173837E2001B4E71 /* PKHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 653B93F6173836AA001B4E71 /* PKHomeViewController.m */; };
 		65862C8C1725EF7300125B42 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65862C8B1725EF7300125B42 /* UIKit.framework */; };
 		65862C8E1725EF7300125B42 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65862C8D1725EF7300125B42 /* Foundation.framework */; };
 		65862C901725EF7300125B42 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65862C8F1725EF7300125B42 /* CoreGraphics.framework */; };
@@ -48,6 +62,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		653B93A0173815C0001B4E71 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/PKReportView.xib; sourceTree = "<group>"; };
+		653B93A21738161E001B4E71 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		653B93A417381622001B4E71 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		653B93A61738162F001B4E71 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		653B93A817381637001B4E71 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		653B93AA17381668001B4E71 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
+		653B93AB17381668001B4E71 /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
+		653B93AE173816B7001B4E71 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		653B93B0173816F7001B4E71 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		653B93B217381734001B4E71 /* PKReportViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReportViewController.h; sourceTree = "<group>"; };
+		653B93B317381734001B4E71 /* PKReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReportViewController.m; sourceTree = "<group>"; };
+		653B93F3173836A3001B4E71 /* PKHomeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PKHomeView.xib; sourceTree = "<group>"; };
+		653B93F5173836AA001B4E71 /* PKHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKHomeViewController.h; sourceTree = "<group>"; };
+		653B93F6173836AA001B4E71 /* PKHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKHomeViewController.m; sourceTree = "<group>"; };
 		65862C871725EF7300125B42 /* pplkpr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pplkpr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65862C8B1725EF7300125B42 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		65862C8D1725EF7300125B42 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -89,10 +117,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				653B93B1173816F7001B4E71 /* Accounts.framework in Frameworks */,
+				653B93A917381637001B4E71 /* Security.framework in Frameworks */,
+				653B93A71738162F001B4E71 /* libsqlite3.dylib in Frameworks */,
+				653B93A517381622001B4E71 /* Social.framework in Frameworks */,
+				653B93A31738161E001B4E71 /* AdSupport.framework in Frameworks */,
 				65862C8C1725EF7300125B42 /* UIKit.framework in Frameworks */,
 				65862C8E1725EF7300125B42 /* Foundation.framework in Frameworks */,
 				65862C901725EF7300125B42 /* CoreGraphics.framework in Frameworks */,
 				65D23348172895B500E28966 /* CoreLocation.framework in Frameworks */,
+				653B93AF173816B7001B4E71 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,7 +146,6 @@
 		65862C7C1725EF7300125B42 = {
 			isa = PBXGroup;
 			children = (
-				65D23347172895B500E28966 /* CoreLocation.framework */,
 				65862C911725EF7300125B42 /* pplkpr */,
 				65862CB51725EF7400125B42 /* pplkprTests */,
 				65862C8A1725EF7300125B42 /* Frameworks */,
@@ -134,6 +167,15 @@
 		65862C8A1725EF7300125B42 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				653B93B0173816F7001B4E71 /* Accounts.framework */,
+				653B93AE173816B7001B4E71 /* FacebookSDK.framework */,
+				653B93A817381637001B4E71 /* Security.framework */,
+				653B93A61738162F001B4E71 /* libsqlite3.dylib */,
+				653B93A417381622001B4E71 /* Social.framework */,
+				653B93A21738161E001B4E71 /* AdSupport.framework */,
+				65D23347172895B500E28966 /* CoreLocation.framework */,
+				653B93AA17381668001B4E71 /* FacebookSDKResources.bundle */,
+				653B93AB17381668001B4E71 /* FBUserSettingsViewResources.bundle */,
 				65862C8B1725EF7300125B42 /* UIKit.framework */,
 				65862C8D1725EF7300125B42 /* Foundation.framework */,
 				65862C8F1725EF7300125B42 /* CoreGraphics.framework */,
@@ -145,6 +187,10 @@
 		65862C911725EF7300125B42 /* pplkpr */ = {
 			isa = PBXGroup;
 			children = (
+				653B93B217381734001B4E71 /* PKReportViewController.h */,
+				653B93B317381734001B4E71 /* PKReportViewController.m */,
+				653B93F5173836AA001B4E71 /* PKHomeViewController.h */,
+				653B93F6173836AA001B4E71 /* PKHomeViewController.m */,
 				65862C9A1725EF7400125B42 /* PKAppDelegate.h */,
 				65862C9B1725EF7400125B42 /* PKAppDelegate.m */,
 				65862CA31725EF7400125B42 /* MainStoryboard_old.storyboard */,
@@ -158,6 +204,8 @@
 		65862C921725EF7400125B42 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				653B93F3173836A3001B4E71 /* PKHomeView.xib */,
+				653B939F173815C0001B4E71 /* PKReportView.xib */,
 				65D233501728AE9600E28966 /* images */,
 				65D233491728AC1700E28966 /* HelloWorld.xib */,
 				65D2334B1728AC1700E28966 /* MainWindow.xib */,
@@ -295,6 +343,10 @@
 				65D233601728AE9600E28966 /* Icon.png in Resources */,
 				65D233611728AE9600E28966 /* Icon@2x.png in Resources */,
 				65D233621728AE9600E28966 /* iTunesArtwork in Resources */,
+				653B93A1173815C0001B4E71 /* PKReportView.xib in Resources */,
+				653B93AC17381668001B4E71 /* FacebookSDKResources.bundle in Resources */,
+				653B93AD17381668001B4E71 /* FBUserSettingsViewResources.bundle in Resources */,
+				653B93F4173836A3001B4E71 /* PKHomeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +384,8 @@
 				65862C981725EF7400125B42 /* main.m in Sources */,
 				65862C9C1725EF7400125B42 /* PKAppDelegate.m in Sources */,
 				65862CA81725EF7400125B42 /* PKViewController.m in Sources */,
+				653B93B5173817ED001B4E71 /* PKReportViewController.m in Sources */,
+				653B93F8173837E2001B4E71 /* PKHomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +394,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				65862CBD1725EF7400125B42 /* pplkprTests.m in Sources */,
+				653B93B417381734001B4E71 /* PKReportViewController.m in Sources */,
+				653B93F7173836AA001B4E71 /* PKHomeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +410,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		653B939F173815C0001B4E71 /* PKReportView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				653B93A0173815C0001B4E71 /* en */,
+			);
+			name = PKReportView.xib;
+			sourceTree = "<group>";
+		};
 		65862C941725EF7400125B42 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -454,6 +518,10 @@
 		65862CC11725EF7400125B42 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../FacebookSDK\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pplkpr/pplkpr-Prefix.pch";
 				INFOPLIST_FILE = "pplkpr/pplkpr-Info.plist";
@@ -465,6 +533,10 @@
 		65862CC21725EF7400125B42 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../FacebookSDK\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "pplkpr/pplkpr-Prefix.pch";
 				INFOPLIST_FILE = "pplkpr/pplkpr-Info.plist";
