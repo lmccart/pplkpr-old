@@ -15,7 +15,6 @@
 @synthesize whoString;
 @synthesize howString;
 
-@synthesize selectedFriendsView = _friendResultText;
 @synthesize friendPickerController = _friendPickerController;
 @synthesize searchBar = _searchBar;
 @synthesize searchText = _searchText;
@@ -38,7 +37,6 @@
 }
 
 - (void)viewDidUnload {
-    self.selectedFriendsView = nil;
     self.friendPickerController = nil;
     
     [super viewDidUnload];
@@ -61,14 +59,12 @@
     // FBSample logic
     // if the session is open, then load the data for our view controller
     if (!FBSession.activeSession.isOpen) {
-      NSLog(@"opening session");
         // if the session is closed, then we open it here, and establish a handler for state changes
         [FBSession openActiveSessionWithReadPermissions:nil
                                            allowLoginUI:YES
                                       completionHandler:^(FBSession *session,
                                                              FBSessionState state,
                                                           NSError *error) {
-                                        NSLog(@"opening session return");
             if (error) {
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
                                                                     message:error.localizedDescription
@@ -77,9 +73,8 @@
                                                           otherButtonTitles:nil];
                 [alertView show];
             } else if (session.isOpen) {
-              NSLog(@"session is open");
                 [self pickFriendsButtonClick:sender];
-            } else NSLog(@"session is not open");
+            }
         }];
         return;
     }
@@ -118,7 +113,7 @@
 }
 
 - (void)fillTextBoxAndDismiss:(NSString *)text {
-    self.selectedFriendsView.text = text;
+    self.whoTextField.text = text;
     
     [self dismissModalViewControllerAnimated:YES];
 }
@@ -193,11 +188,11 @@
   // Set the text of the label to the value of the 'string' instance variable.
   
   
-  NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://pplkpr.jit.su/report?who=%@&how=%@&rating=%f", whoTextField.text, howTextField.text, ratingSlider.value]];
+  NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://pplkpr.jit.su/report?mode=%d&who=%@&how=%@&rating=%f", self.mode, [whoTextField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], [howTextField.text stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding], ratingSlider.value]];
   NSURLRequest *theRequest=[NSURLRequest requestWithURL:URL
                                             cachePolicy:NSURLRequestUseProtocolCachePolicy
                                         timeoutInterval:60.0];
-  
+  NSLog(@"who %@", whoTextField.text);
   
   // create the connection with the request
   // and start loading the data
@@ -206,8 +201,8 @@
     // Create the NSMutableData to hold the received data.
     // receivedData is an instance variable declared elsewhere.
     //label.text = [[NSString alloc] initWithData:[[NSMutableData data] retain] encoding:NSUTF8StringEncoding];
-    label.text = @"success";
     [self reset];
+    label.text = @"success";
   } else {
     // Inform the user that the connection failed.
     label.text = @"fail";
@@ -226,7 +221,6 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
 	if (theTextField == whoTextField) {
-    NSLog(@"returdn");
 		[whoTextField resignFirstResponder];
 	} else if (theTextField == howTextField) {
     [howTextField resignFirstResponder];
@@ -238,11 +232,12 @@
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
   [whoTextField resignFirstResponder];
-  whoTextField.text = self.whoString;
+  //whoTextField.text = self.whoString;
   [howTextField resignFirstResponder];
-  howTextField.text = self.howString;
+  //howTextField.text = self.howString;
   [super touchesBegan:touches withEvent:event];
 }
+
 
 
 

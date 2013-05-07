@@ -12,7 +12,6 @@
   NSString *whoString;
   NSString *howString;
   
-  IBOutlet UITextView *selectedFriendsView;
   FBFriendPickerViewController *friendPickerController;
   UISearchBar *searchBar;
   NSString *searchText;
@@ -30,7 +29,6 @@
 @property (nonatomic, copy) NSString *whoString;
 @property (nonatomic, copy) NSString *howString;
 
-@property (strong, nonatomic) IBOutlet UITextView *selectedFriendsView;
 @property (retain, nonatomic) FBFriendPickerViewController *friendPickerController;
 @property (retain, nonatomic) UISearchBar *searchBar;
 @property (retain, nonatomic) NSString *searchText;

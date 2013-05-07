@@ -3,7 +3,7 @@
   "scripts": {
     "start": "index.js"
   },
-  "version": "0.0.0-108",
+  "version": "0.0.0-109",
   "engines": {
     "node": "0.8.x"
   },
@@ -19,6 +19,3 @@
   },
   "subdomain": "pplkpr"
 }
-
-//  fb app id: 350256398400270
-//  fb app secret: 5195c44398b1bb4527fabce1bbd0faba

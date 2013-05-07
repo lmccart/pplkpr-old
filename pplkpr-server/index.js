@@ -30,10 +30,11 @@ app.configure('production', function(){
 */
 
 app.get('/report', function(req, res){
+	var mode = req.query.mode;
 	var who = req.query.who;
 	var how = req.query.how;
 	var rating = req.query.rating;
-	report(who, how, rating, res);
+	report(mode, who, how, rating, res);
 });
 
 app.get('/all', function(req, res){
@@ -55,11 +56,11 @@ common.mongo.open(function(err, p_client) {
 });
 	
 
-function report(who, how, rating, res) {
+function report(mode, who, how, rating, res) {
 	console.log("report "+rating);
 	// check if in db already
 	common.mongo.collection('reports', function(e, c) {	
-		c.insert({ who: who, how: how, rating: rating }, function(err, doc) {
+		c.insert({ mode: mode, who: who, how: how, rating: rating }, function(err, doc) {
   		var body = 'Hello World '+rating;
 	    print({ success: body }, res);
 		});
